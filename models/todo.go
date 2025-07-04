@@ -43,18 +43,18 @@ func (m *TodoModel) Create(req CreateTodoRequest) (*Todo, error) {
 		INSERT INTO todos (title, description, completed, created_at, updated_at)
 		VALUES (?, ?, ?, ?, ?)
 	`
-	
+
 	now := time.Now()
 	result, err := m.DB.Exec(query, req.Title, req.Description, false, now, now)
 	if err != nil {
 		return nil, err
 	}
-	
+
 	id, err := result.LastInsertId()
 	if err != nil {
 		return nil, err
 	}
-	
+
 	return &Todo{
 		ID:          int(id),
 		Title:       req.Title,
@@ -71,7 +71,7 @@ func (m *TodoModel) GetByID(id int) (*Todo, error) {
 		SELECT id, title, description, completed, created_at, updated_at
 		FROM todos WHERE id = ?
 	`
-	
+
 	todo := &Todo{}
 	err := m.DB.QueryRow(query, id).Scan(
 		&todo.ID,
@@ -81,11 +81,11 @@ func (m *TodoModel) GetByID(id int) (*Todo, error) {
 		&todo.CreatedAt,
 		&todo.UpdatedAt,
 	)
-	
+
 	if err != nil {
 		return nil, err
 	}
-	
+
 	return todo, nil
 }
 
@@ -95,13 +95,13 @@ func (m *TodoModel) GetAll() ([]*Todo, error) {
 		SELECT id, title, description, completed, created_at, updated_at
 		FROM todos ORDER BY created_at DESC
 	`
-	
+
 	rows, err := m.DB.Query(query)
 	if err != nil {
 		return nil, err
 	}
 	defer rows.Close()
-	
+
 	var todos []*Todo
 	for rows.Next() {
 		todo := &Todo{}
@@ -118,11 +118,11 @@ func (m *TodoModel) GetAll() ([]*Todo, error) {
 		}
 		todos = append(todos, todo)
 	}
-	
+
 	if err = rows.Err(); err != nil {
 		return nil, err
 	}
-	
+
 	return todos, nil
 }
 
@@ -133,13 +133,13 @@ func (m *TodoModel) Update(id int, req UpdateTodoRequest) (*Todo, error) {
 		SET title = ?, description = ?, updated_at = ?
 		WHERE id = ?
 	`
-	
+
 	now := time.Now()
 	_, err := m.DB.Exec(query, req.Title, req.Description, now, id)
 	if err != nil {
 		return nil, err
 	}
-	
+
 	// Return the updated todo
 	return m.GetByID(id)
 }
@@ -158,13 +158,13 @@ func (m *TodoModel) ToggleComplete(id int, completed bool) (*Todo, error) {
 		SET completed = ?, updated_at = ?
 		WHERE id = ?
 	`
-	
+
 	now := time.Now()
 	_, err := m.DB.Exec(query, completed, now, id)
 	if err != nil {
 		return nil, err
 	}
-	
+
 	// Return the updated todo
 	return m.GetByID(id)
-} 
+}

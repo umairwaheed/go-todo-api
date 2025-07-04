@@ -144,4 +144,4 @@ func (h *TodoHandler) UncompleteTodo(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, todo)
-} 
+}

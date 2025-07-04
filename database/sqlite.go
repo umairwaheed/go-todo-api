@@ -56,4 +56,4 @@ func CloseDB(db *sql.DB) error {
 		return db.Close()
 	}
 	return nil
-} 
+}

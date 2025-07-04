@@ -35,12 +35,12 @@ func main() {
 		c.Header("Access-Control-Allow-Origin", "*")
 		c.Header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, PATCH, OPTIONS")
 		c.Header("Access-Control-Allow-Headers", "Content-Type, Authorization")
-		
+
 		if c.Request.Method == "OPTIONS" {
 			c.AbortWithStatus(204)
 			return
 		}
-		
+
 		c.Next()
 	})
 
@@ -63,7 +63,7 @@ func main() {
 	// Health check endpoint
 	router.GET("/health", func(c *gin.Context) {
 		c.JSON(200, gin.H{
-			"status": "ok",
+			"status":  "ok",
 			"message": "Todo API is running",
 		})
 	})
@@ -75,7 +75,7 @@ func main() {
 			"version": "1.0.0",
 			"endpoints": gin.H{
 				"health": "/health",
-				"todos": "/api/v1/todos",
+				"todos":  "/api/v1/todos",
 			},
 		})
 	})
@@ -93,4 +93,4 @@ func main() {
 	if err := router.Run(":" + port); err != nil {
 		log.Fatal("Failed to start server:", err)
 	}
-} 
+}

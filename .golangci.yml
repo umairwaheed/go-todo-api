@@ -1,0 +1,187 @@
+run:
+  timeout: 5m
+  go: "1.21"
+
+linters:
+  enable:
+    - gofmt
+    - goimports
+    - govet
+    - errcheck
+    - staticcheck
+    - gosimple
+    - ineffassign
+    - unused
+    - misspell
+    - gosec
+    - gocritic
+    - revive
+    - gocyclo
+    - dupl
+    - goconst
+    - gocognit
+    - gomnd
+    - lll
+    - nakedret
+    - prealloc
+    - unparam
+    - whitespace
+    - wrapcheck
+    - noctx
+    - nlreturn
+    - paralleltest
+    - testpackage
+    - exhaustive
+    - forbidigo
+    - gochecknoinits
+    - gochecknoglobals
+    - gochecksumtype
+    - gocognit
+    - goconst
+    - gocritic
+    - gocyclo
+    - gomnd
+    - gomoddirectives
+    - gomodguard
+    - goprintffuncname
+    - gosec
+    - gosimple
+    - govet
+    - ineffassign
+    - lll
+    - misspell
+    - nakedret
+    - noctx
+    - nlreturn
+    - paralleltest
+    - prealloc
+    - revive
+    - staticcheck
+    - structcheck
+    - testpackage
+    - unparam
+    - unused
+    - varcheck
+    - whitespace
+    - wrapcheck
+
+linters-settings:
+  gofmt:
+    simplify: true
+  goimports:
+    local-prefixes: github.com/umair/go-todo-api
+  gocyclo:
+    min-complexity: 15
+  dupl:
+    threshold: 100
+  goconst:
+    min-len: 3
+    min-occurrences: 3
+  gomnd:
+    checks: argument,case,condition,operation,return,assign
+  lll:
+    line-length: 120
+  gocritic:
+    enabled-tags:
+      - diagnostic
+      - experimental
+      - opinionated
+      - performance
+      - style
+    disabled-checks:
+      - commentFormatting
+      - hugeParam
+      - ifElseChain
+      - octalLiteral
+      - whyNoLint
+  gosec:
+    excludes:
+      - G404 # Use of weak random number generator (math/rand instead of crypto/rand)
+  revive:
+    rules:
+      - name: exported
+        arguments:
+          - disableStutteringCheck
+  testpackage:
+    skip-regexp: ".*_test\\.go$"
+
+issues:
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - gomnd
+        - gocyclo
+        - dupl
+        - goconst
+        - gocognit
+        - lll
+        - paralleltest
+        - testpackage
+        - exhaustive
+        - forbidigo
+        - gochecknoinits
+        - gochecknoglobals
+        - gochecksumtype
+        - gocognit
+        - goconst
+        - gocritic
+        - gocyclo
+        - gomnd
+        - gomoddirectives
+        - gomodguard
+        - goprintffuncname
+        - gosec
+        - gosimple
+        - govet
+        - ineffassign
+        - lll
+        - misspell
+        - nakedret
+        - noctx
+        - nlreturn
+        - paralleltest
+        - prealloc
+        - revive
+        - staticcheck
+        - structcheck
+        - testpackage
+        - unparam
+        - unused
+        - varcheck
+        - whitespace
+        - wrapcheck
+    - path: main\.go
+      linters:
+        - gochecknoinits
+        - gochecknoglobals
+        - gochecksumtype
+        - gocognit
+        - goconst
+        - gocritic
+        - gocyclo
+        - gomnd
+        - gomoddirectives
+        - gomodguard
+        - goprintffuncname
+        - gosec
+        - gosimple
+        - govet
+        - ineffassign
+        - lll
+        - misspell
+        - nakedret
+        - noctx
+        - nlreturn
+        - paralleltest
+        - prealloc
+        - revive
+        - staticcheck
+        - structcheck
+        - testpackage
+        - unparam
+        - unused
+        - varcheck
+        - whitespace
+        - wrapcheck
+  max-issues-per-linter: 0
+  max-same-issues: 0 
