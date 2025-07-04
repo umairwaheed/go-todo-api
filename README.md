@@ -105,7 +105,7 @@ go-todo-api/
 ### Create a Todo
 
 ```bash
-curl -X POST http://localhost:8080/todos \
+curl -X POST http://localhost:8080/api/v1/todos \
   -H "Content-Type: application/json" \
   -d '{
     "title": "Learn Go",
@@ -116,19 +116,19 @@ curl -X POST http://localhost:8080/todos \
 ### Get All Todos
 
 ```bash
-curl http://localhost:8080/todos
+curl http://localhost:8080/api/v1/todos
 ```
 
 ### Get a Specific Todo
 
 ```bash
-curl http://localhost:8080/todos/1
+curl http://localhost:8080/api/v1/todos/1
 ```
 
 ### Update a Todo
 
 ```bash
-curl -X PUT http://localhost:8080/todos/1 \
+curl -X PUT http://localhost:8080/api/v1/todos/1 \
   -H "Content-Type: application/json" \
   -d '{
     "title": "Learn Go Programming",
@@ -139,13 +139,13 @@ curl -X PUT http://localhost:8080/todos/1 \
 ### Mark Todo as Complete
 
 ```bash
-curl -X PATCH http://localhost:8080/todos/1/complete
+curl -X PATCH http://localhost:8080/api/v1/todos/1/complete
 ```
 
 ### Delete a Todo
 
 ```bash
-curl -X DELETE http://localhost:8080/todos/1
+curl -X DELETE http://localhost:8080/api/v1/todos/1
 ```
 
 ## Error Responses
